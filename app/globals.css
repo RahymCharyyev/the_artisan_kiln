@@ -1,26 +1,83 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  --color-paper: #f3ecd9;
+  --color-paper-muted: #ebe3d0;
+  --color-ink: #1f2433;
+  --color-ink-muted: #3d4558;
+  --color-navy: #2b3a67;
+  --color-navy-dark: #1e2a4a;
+  --color-terracotta: #c0593a;
+  --color-fern: #4a6b3a;
+  --color-ochre: #d8a83a;
+  --color-line: #1f2433;
+  --color-success: #2d6a4f;
+
+  --font-display: var(--font-playfair), Georgia, "Times New Roman", serif;
+  --font-sans: var(--font-inter), var(--font-geist-sans), system-ui, sans-serif;
+
+  --radius-card: 12px;
+
+  --frame-top: 116px;
+  --frame-bottom: 135px;
+  --frame-left: 116px;
+  --frame-right: 116px;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+@layer base {
+  html {
+    @apply scroll-smooth;
+    min-height: 100%;
+    background-color: var(--color-paper);
+  }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  body {
+    @apply min-h-dvh text-ink antialiased;
+    font-family: var(--font-sans);
+    background-color: var(--color-paper);
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer utilities {
+  .frame-inset {
+    padding-top: calc(var(--frame-top) + 4px);
+    padding-bottom: calc(var(--frame-bottom) + 12px);
+    padding-left: max(12px, 3vw);
+    padding-right: max(12px, 3vw);
+  }
+
+  @media (min-width: 1024px) {
+    .frame-inset {
+      padding-top: calc(var(--frame-top) + 8px);
+      padding-bottom: calc(var(--frame-bottom) + 16px);
+      padding-left: max(var(--frame-left), 5vw);
+      padding-right: max(var(--frame-right), 5vw);
+    }
+  }
+
+  .panel-bordered {
+    @apply border-2 border-line bg-paper;
+  }
+
+  .panel-header {
+    @apply border-b-2 border-line bg-paper-muted px-3 py-2 text-center font-display text-base font-bold tracking-[0.12em] text-ink lg:text-left;
+  }
+
+  .palette-scroll {
+    scrollbar-width: thin;
+    scrollbar-color: #3d6a9e var(--color-paper-muted);
+  }
+
+  .palette-scroll::-webkit-scrollbar {
+    width: 7px;
+  }
+
+  .palette-scroll::-webkit-scrollbar-thumb {
+    background: #3d6a9e;
+    border-radius: 3px;
+  }
+
+  .palette-scroll::-webkit-scrollbar-track {
+    background: var(--color-paper-muted);
+  }
 }
