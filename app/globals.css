@@ -1,4 +1,4 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
 @theme {
   --color-paper: #f3ecd9;
@@ -13,15 +13,19 @@
   --color-line: #1f2433;
   --color-success: #2d6a4f;
 
-  --font-display: var(--font-playfair), Georgia, "Times New Roman", serif;
+  --font-display: var(--font-playfair), Georgia, 'Times New Roman', serif;
   --font-sans: var(--font-inter), var(--font-geist-sans), system-ui, sans-serif;
 
   --radius-card: 12px;
 
-  --frame-top: 116px;
-  --frame-bottom: 135px;
-  --frame-left: 116px;
-  --frame-right: 116px;
+  --frame-corner-top-left: 316px;
+  --frame-corner-top-right: 316px;
+  --frame-corner-bottom-left: 516px;
+  --frame-corner-bottom-right: 516px;
+  --frame-side-left-width: 716px;
+  --frame-side-right-width: 716px;
+  --frame-side-left-height: 600px;
+  --frame-side-right-height: 600px;
 }
 
 @layer base {

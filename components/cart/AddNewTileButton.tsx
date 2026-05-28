@@ -21,7 +21,7 @@ export function AddNewTileButton() {
   }
 
   return (
-    <div className="relative mt-6 flex justify-start">
+    <div className="relative flex justify-start">
       <button
         type="button"
         onClick={() => setOpen((o) => !o)}

@@ -132,16 +132,16 @@ function BracketField({
   compact?: boolean;
 }) {
   return (
-    <div className="relative w-full text-center">
-      <span className="font-mono text-ink">[</span>
+    <div className="flex items-center justify-center gap-0 whitespace-nowrap">
+      <span className="shrink-0 font-mono leading-none text-ink">[</span>
       <input
         aria-label={ariaLabel}
         value={value}
         inputMode="numeric"
         onChange={(e) => onChange(e.target.value)}
-        className={`mx-0.5 w-[calc(100%-1.25rem)] border-0 bg-transparent text-center font-mono tabular-nums focus-visible:outline-none ${compact ? "text-[11px]" : "text-[12px]"}`}
+        className={`w-[3.25rem] shrink-0 border-0 bg-transparent px-0.5 text-center font-mono tabular-nums leading-none focus-visible:outline-none ${compact ? "text-[11px]" : "text-[12px]"}`}
       />
-      <span className="font-mono text-ink">]</span>
+      <span className="shrink-0 font-mono leading-none text-ink">]</span>
     </div>
   );
 }
@@ -154,7 +154,9 @@ function BracketDisplay({
   compact?: boolean;
 }) {
   return (
-    <span className={`font-mono tabular-nums ${compact ? "text-[11px]" : "text-[12px]"}`}>
+    <span
+      className={`inline-block whitespace-nowrap font-mono tabular-nums leading-none ${compact ? "text-[11px]" : "text-[12px]"}`}
+    >
       [{value}]
     </span>
   );

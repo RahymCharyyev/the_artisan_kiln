@@ -29,8 +29,8 @@ export function DesktopLayout() {
         <div className="panel-bordered overflow-hidden">
           <CartTableDesktop />
         </div>
-        <AddNewTileButton />
-        <div className="flex justify-end">
+        <div className="mt-6 flex items-start justify-between gap-4">
+          <AddNewTileButton />
           <TotalsCart />
         </div>
       </section>

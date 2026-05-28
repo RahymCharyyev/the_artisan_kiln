@@ -57,14 +57,23 @@ export function DesignToolPanel() {
       onDragEnd={handleDragEnd}
     >
       <div>
-        <p className="text-[11px] font-bold tracking-[0.06em] text-ink">
-          VISUALIZE YOUR ORDER:
-        </p>
-        <p className="text-[10px] text-ink-muted">
-          Drag and drop tiles here to create patterns.
-        </p>
+        <div className="flex items-stretch gap-2">
+          <div className="panel-bordered min-w-0 flex-1 px-3 py-1.5 text-center">
+            <p className="text-[11px] font-bold tracking-[0.06em] text-ink">
+              VISUALIZE YOUR ORDER:
+            </p>
+            <p className="text-[10px] text-ink-muted">
+              Drag and drop tiles here to create patterns.
+            </p>
+          </div>
+          <div className="panel-bordered flex w-[100px] shrink-0 items-center justify-center px-1 text-center xl:w-[108px]">
+            <p className="text-[10px] font-bold tracking-[0.26em] text-ink">
+              DESIGN PALATE
+            </p>
+          </div>
+        </div>
 
-        <div className="mt-2 flex items-start gap-2">
+        <div className="mt-0.5 flex items-start gap-2">
           <div className="min-w-0 flex-1">
             <DesignGrid />
           </div>
