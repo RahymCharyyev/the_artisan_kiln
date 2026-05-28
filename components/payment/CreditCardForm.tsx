@@ -79,7 +79,7 @@ function formatExpiryTyping(raw: string) {
 
 function VisaBadge() {
   return (
-    <div className="inline-flex h-6 items-center rounded border border-line/60 bg-white px-2 text-[12px] font-bold italic text-[#1a1f71]">
+    <div className="inline-flex h-6 items-center rounded border border-line/60 bg-white px-2 text-[12px] font-bold italic text-visa">
       VISA
     </div>
   );
@@ -88,8 +88,8 @@ function VisaBadge() {
 function MasterBadge() {
   return (
     <div className="inline-flex h-6 items-center gap-0.5 rounded border border-line/60 bg-white px-2">
-      <span className="h-3.5 w-3.5 rounded-full bg-[#eb001b]" />
-      <span className="-ml-1 h-3.5 w-3.5 rounded-full bg-[#f79e1b]" />
+      <span className="h-3.5 w-3.5 rounded-full bg-master-red" />
+      <span className="-ml-1 h-3.5 w-3.5 rounded-full bg-master-orange" />
     </div>
   );
 }

@@ -74,7 +74,7 @@ function PaymentRadio({
 
 function PayPalGlyph() {
   return (
-    <span className="rounded bg-[#003087] px-1 py-0.5 text-[8px] font-bold text-white">
+    <span className="rounded bg-paypal px-1 py-0.5 text-[8px] font-bold text-white">
       PayPal
     </span>
   );

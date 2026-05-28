@@ -12,6 +12,16 @@
   --color-ochre: #d8a83a;
   --color-line: #1f2433;
   --color-success: #2d6a4f;
+  --color-header-bg: #e8dfc9;
+  --color-panel-soft: #eae0c4;
+  --color-dot-terracotta: #b97a56;
+  --color-dot-ochre: #d9a94c;
+  --color-dot-fern: #4c8b83;
+  --color-paypal: #003087;
+  --color-visa: #1a1f71;
+  --color-master-red: #eb001b;
+  --color-master-orange: #f79e1b;
+  --color-scrollbar: #3d6a9e;
 
   --font-display: var(--font-playfair), Georgia, 'Times New Roman', serif;
   --font-sans: var(--font-inter), var(--font-geist-sans), system-ui, sans-serif;
@@ -69,7 +79,7 @@
 
   .palette-scroll {
     scrollbar-width: thin;
-    scrollbar-color: #3d6a9e var(--color-paper-muted);
+    scrollbar-color: var(--color-scrollbar) var(--color-paper-muted);
   }
 
   .palette-scroll::-webkit-scrollbar {
@@ -77,7 +87,7 @@
   }
 
   .palette-scroll::-webkit-scrollbar-thumb {
-    background: #3d6a9e;
+    background: var(--color-scrollbar);
     border-radius: 3px;
   }
 

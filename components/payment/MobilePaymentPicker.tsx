@@ -16,7 +16,7 @@ const OPTIONS: {
     value: "paypal",
     label: "PAYPAL",
     icon: (
-      <span className="rounded bg-[#003087] px-1.5 py-0.5 text-[8px] font-bold text-white">
+      <span className="rounded bg-paypal px-1.5 py-0.5 text-[8px] font-bold text-white">
         PayPal
       </span>
     ),
@@ -42,7 +42,7 @@ export function MobilePaymentPicker({
 }) {
   return (
     <fieldset className="panel-bordered overflow-hidden">
-      <legend className="block w-full border-b-2 border-line bg-[#EAE0C4] px-2 py-2 text-center text-[10px] font-bold tracking-[0.2em] text-ink">
+      <legend className="block w-full border-b-2 border-line bg-panel-soft px-2 py-2 text-center text-[10px] font-bold tracking-[0.2em] text-ink">
         SELECT PAYMENT METHOD:
       </legend>
       <div className="grid grid-cols-4 divide-x-2 divide-line">
@@ -50,7 +50,7 @@ export function MobilePaymentPicker({
           <label
             key={opt.value}
             className={`flex min-h-[88px] cursor-pointer flex-col items-center justify-center gap-1 px-1 py-2 text-center transition has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-inset has-[:focus-visible]:ring-navy/50 ${
-              value === opt.value ? "bg-[#EAE0C4]" : "bg-paper"
+              value === opt.value ? "bg-panel-soft" : "bg-paper"
             }`}
           >
             <input
@@ -74,8 +74,8 @@ export function MobilePaymentPicker({
 function CardIcon() {
   return (
     <svg width="28" height="20" viewBox="0 0 28 20" aria-hidden="true">
-      <rect x="1" y="3" width="26" height="14" rx="2" fill="#2b3a67" />
-      <rect x="1" y="8" width="26" height="4" fill="#d8a83a" opacity="0.9" />
+      <rect x="1" y="3" width="26" height="14" rx="2" fill="var(--color-navy)" />
+      <rect x="1" y="8" width="26" height="4" fill="var(--color-ochre)" opacity="0.9" />
     </svg>
   );
 }

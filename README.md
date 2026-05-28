@@ -1,71 +1,78 @@
-# The Artisan Kiln — Ceramic Tile Order Form
+# The Artisan Kiln — Форма заказа керамической плитки
 
-SPA-style order UI for handcrafted ceramic tiles: responsive **mobile-first** checkout and **desktop** three-column layout with a Redux-backed **drag-and-drop 6×6 design grid**.
+SPA-интерфейс оформления заказа для авторской керамической плитки: адаптивный **mobile-first** checkout и **desktop**-макет в три колонки с **drag-and-drop сеткой 6×6** на Redux.
 
-## Stack
+## Стек
 
 - **Next.js 16** (App Router) · **React 19** · **TypeScript** (strict)
-- **Tailwind CSS v4** — design tokens via `@theme` in [`app/globals.css`](app/globals.css)
-- **Redux Toolkit** — cart totals + canvas grid (see [`store/`](store/))
-- **@dnd-kit** — palette → grid dragging (desktop)
-- **Framer Motion** — row/cell animations
-- **Vitest** — unit tests for pricing and validation helpers
+- **Tailwind CSS v4** — дизайн-токены через `@theme` в [`app/globals.css`](app/globals.css)
+- **Redux Toolkit** — итоги корзины + состояние сетки (см. [`store/`](store/))
+- **@dnd-kit** — перетаскивание плиток из палитры в сетку (desktop)
+- **Framer Motion** — анимации строк и ячеек
+- **Vitest** — unit-тесты для расчётов и валидации
 
-## Business rules
+## Бизнес-правила
 
-- **Subtotal** = Σ(qty × unit price) for all catalogue lines (`data/tiles.ts`).
-- **Shipping** = `$0` if subtotal **`> $500`**, otherwise **`$25`**.
+- **Subtotal** = Σ(количество × цена за единицу) по всем строкам каталога (`data/tiles.ts`).
+- **Shipping** = `$0`, если subtotal **`> $500`**, иначе **`$25`**.
 - **Grand total** = subtotal + shipping.
-- Checkout **customer + card** validations live in [`lib/validation.ts`](lib/validation.ts) (demo only — no backend).
+- Валидация checkout-полей (**customer + card**) реализована в [`lib/validation.ts`](lib/validation.ts) (демо без backend).
 
-### Run locally
+### Локальный запуск
 
 ```bash
 npm install
 npm run dev        # http://localhost:3000
 ```
 
-### Scripts
+### Скрипты
 
-| Command | Purpose |
+| Команда | Назначение |
 |---------|---------|
-| `npm run dev` | Turbopack dev server |
-| `npm run build` | Production build |
+| `npm run dev` | запуск dev-сервера Turbopack |
+| `npm run build` | production-сборка |
 | `npm run lint` | ESLint (`eslint-config-next`) |
 | `npm run test` | Vitest (calc / validation / cart slice) |
-| `npm run test:watch` | Vitest watch mode |
-| `npm run extract-decor` | Crop corner/footer art from `design/*.png` into `public/decor/` (requires `sharp`) |
+| `npm run test:watch` | Vitest в режиме watch |
+| `npm run extract-decor` | нарезка декоративных ассетов из `design/*.png` в `public/decor/` (требуется `sharp`) |
 
-## Project layout
+## Структура проекта
 
-- [`app/layout.tsx`](app/layout.tsx) — fonts (Bebas Neue + Inter), global providers
+- [`app/layout.tsx`](app/layout.tsx) — шрифты (Bebas Neue + Inter), глобальные провайдеры
 - [`app/providers.tsx`](app/providers.tsx) — Redux `<Provider>`
-- [`app/page.tsx`](app/page.tsx) — renders [`OrderPageShell`](components/order/OrderPageShell.tsx)
-- [`components/order/MobileLayout.tsx`](components/order/MobileLayout.tsx) — single column (customer → cart → payment)
+- [`app/page.tsx`](app/page.tsx) — рендерит [`OrderPageShell`](components/order/OrderPageShell.tsx)
+- [`components/order/MobileLayout.tsx`](components/order/MobileLayout.tsx) — мобильная колонка (customer → cart → payment)
 - [`components/order/DesktopLayout.tsx`](components/order/DesktopLayout.tsx) — cart | design grid (lazy) | checkout
-- [`components/checkout/`](components/checkout/) — `CheckoutProvider` with `state` / `actions` / `meta` context; payment, toast, and submit composed for both layouts
-- [`components/order/DesignToolLazy.tsx`](components/order/DesignToolLazy.tsx) — `next/dynamic` loads DnD tool only on desktop
-- [`public/tiles/*.svg`](public/tiles/) — tile pattern previews
-- [`public/decor/*.png`](public/decor/) — corner and footer artwork cropped from design mocks
+- [`components/checkout/`](components/checkout/) — `CheckoutProvider` с `state` / `actions` / `meta`; payment, toast и submit для обоих макетов
+- [`components/order/DesignToolLazy.tsx`](components/order/DesignToolLazy.tsx) — `next/dynamic` подгружает DnD-инструмент только на desktop
+- [`public/tiles/*.svg`](public/tiles/) — превью паттернов плитки
+- [`public/decor/*.png`](public/decor/) — угловой и нижний декор, нарезанный из макетов
 
-### Deploy
+### Деплой
 
-Deploy to **[Vercel](https://vercel.com)** (push this repo → New Project → framework auto-detected). Env vars are optional for this static demo UI.
+Рекомендуемый вариант — **[Vercel](https://vercel.com)** (push репозитория → New Project → фреймворк определяется автоматически). Переменные окружения для этого демо не обязательны.
 
-## Notes on requirement deviations
+## Примечания по согласованным вопросам ТЗ
 
-### Tailwind configuration (`tailwind.config.js`)
+Ниже — ответы заказчика на уточняющие вопросы и как это реализовано в проекте.
 
-The brief asks for custom theme values in `tailwind.config.js`. This project was scaffolded with **Tailwind CSS v4** (`create-next-app@latest`), where the recommended approach is **CSS-first configuration** via `@theme` in [`app/globals.css`](app/globals.css). That block defines the same concerns as `theme.extend` in v3: colors (`paper`, `navy`, `terracotta`, …), fonts, and radii. Adding an empty or duplicate `tailwind.config.js` on v4 is unnecessary and can conflict with the PostCSS v4 pipeline.
+### 1) Валюта в UI и расчётах
 
-### Currency (EUR in brief vs USD in UI)
+В ТЗ изначально встречались евро, но заказчик подтвердил, что можно использовать любую валюту, и для совпадения с макетами нужно использовать **доллары ($)**.  
+В проекте используются именно доллары: форматирование через `formatUSD` и расчеты в USD.
 
-The original brief text used euros; the **design mocks and updated assignment README use US dollars**. The app formats prices with `formatUSD` (`en-US`, `$28.00`) and applies free shipping when subtotal **exceeds $500** (flat **$25** otherwise), matching the mockups.
+### 2) Tailwind CSS v4 и `tailwind.config.js`
 
-### Decorative artwork
+Заказчик подтвердил: можно сделать оптимальным способом и добавить пояснение об отклонении.  
+Проект создан на **Tailwind CSS v4**, где используется CSS-first подход через `@theme` в [`app/globals.css`](app/globals.css).  
+Отдельный `tailwind.config.js` не добавлялся, чтобы не дублировать конфигурацию и не конфликтовать с пайплайном Tailwind v4.
 
-Corner leaves, tile ornaments, hands, and the artist palette are **cropped from** [`design/design_desktop.png`](design/design_desktop.png) and [`design/design_mobile.png`](design/design_mobile.png) using [`scripts/extract-decor.mjs`](scripts/extract-decor.mjs) and served as static PNGs from [`public/decor/`](public/decor/). Re-run `npm run extract-decor` after changing crop regions in the script.
+### 3) Декоративная графика из макетов
+
+Заказчик подтвердил, что декор нужно извлекать из PNG-макетов и подключать как статические изображения.  
+В проекте декор нарезан из [`design/design_desktop.png`](design/design_desktop.png) и [`design/design_mobile.png`](design/design_mobile.png), затем подключен из [`public/decor/`](public/decor/).  
+Для обновления ассетов используется скрипт [`scripts/extract-decor.mjs`](scripts/extract-decor.mjs).
 
 ---
 
-Design brief: see [`ТЗ.md`](ТЗ.md) and PNG references in [`design/`](design/).
+Текст задания: [`ТЗ.md`](ТЗ.md), PNG-референсы: [`design/`](design/).

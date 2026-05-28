@@ -37,13 +37,13 @@ export function Header() {
   const badge = activeLineCount(lines, CART_LINE_IDS);
 
   return (
-    <header className='sticky top-0 z-50 border-b-2 border-black bg-[#e8dfc9]'>
+    <header className='sticky top-0 z-50 border-b-2 border-black bg-header-bg'>
       {/* Mobile header */}
       <div className='flex items-center justify-between gap-2 px-2.5 py-2 lg:hidden'>
         <div aria-hidden className='flex items-center gap-1 pr-1'>
-          <span className='h-2.5 w-2.5 rounded-full border border-line bg-[#b97a56]' />
-          <span className='h-2.5 w-2.5 rounded-full border border-line bg-[#d9a94c]' />
-          <span className='h-2.5 w-2.5 rounded-full border border-line bg-[#4c8b83]' />
+          <span className='h-2.5 w-2.5 rounded-full border border-line bg-dot-terracotta' />
+          <span className='h-2.5 w-2.5 rounded-full border border-line bg-dot-ochre' />
+          <span className='h-2.5 w-2.5 rounded-full border border-line bg-dot-fern' />
         </div>
         <nav
           aria-label='Primary'
