@@ -42,15 +42,15 @@ export function MobilePaymentPicker({
 }) {
   return (
     <fieldset className="panel-bordered overflow-hidden">
-      <legend className="block w-full border-b-2 border-line bg-paper-muted px-2 py-2 text-center text-[10px] font-bold tracking-[0.2em] text-ink">
+      <legend className="block w-full border-b-2 border-line bg-[#EAE0C4] px-2 py-2 text-center text-[10px] font-bold tracking-[0.2em] text-ink">
         SELECT PAYMENT METHOD:
       </legend>
       <div className="grid grid-cols-4 divide-x-2 divide-line">
         {OPTIONS.map((opt) => (
           <label
             key={opt.value}
-            className={`flex cursor-pointer flex-col items-center gap-1 px-1 py-3 text-center transition has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-inset has-[:focus-visible]:ring-navy/50 ${
-              value === opt.value ? "bg-paper-muted" : "bg-paper"
+            className={`flex min-h-[88px] cursor-pointer flex-col items-center justify-center gap-1 px-1 py-2 text-center transition has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-inset has-[:focus-visible]:ring-navy/50 ${
+              value === opt.value ? "bg-[#EAE0C4]" : "bg-paper"
             }`}
           >
             <input
@@ -61,7 +61,7 @@ export function MobilePaymentPicker({
               onChange={() => onChange(opt.value)}
             />
             <span className="flex h-8 items-center justify-center">{opt.icon}</span>
-            <span className="text-[7px] font-bold leading-tight tracking-[0.08em]">
+            <span className="text-[8px] font-bold leading-tight tracking-[0.08em]">
               {opt.label}
             </span>
           </label>

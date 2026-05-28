@@ -19,13 +19,13 @@ export function MobileLayout() {
   } = useCheckout();
 
   return (
-    <div className="relative z-10 mx-auto max-w-[520px] pb-20 lg:hidden">
-      <form className="space-y-5" noValidate onSubmit={submit}>
+    <div className="relative z-10 mx-auto max-w-[560px] px-2 pb-16 lg:hidden">
+      <form className="space-y-4" noValidate onSubmit={submit}>
         <CustomerInfoFormMobile />
 
         <CartTableMobile />
 
-        <div className="mt-4 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+        <div className="mt-3 flex items-start justify-between gap-3">
           <AddNewTileButton />
           <TotalsCart />
         </div>

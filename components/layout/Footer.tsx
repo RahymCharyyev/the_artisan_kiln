@@ -9,10 +9,10 @@ const DESKTOP_LINKS = [
 
 export function Footer() {
   return (
-    <footer className='relative z-20 mt-4 lg:fixed lg:inset-x-0 lg:bottom-3 lg:mt-0'>
+    <footer className='relative z-20 mt-4 pb-5 lg:fixed lg:inset-x-0 lg:bottom-3 lg:mt-0 lg:pb-0'>
       <div className='mx-auto flex max-w-[1320px] flex-col items-center gap-2 px-4 text-center'>
         {/* Mobile */}
-        <div className='flex items-center gap-4 text-[10px] font-bold tracking-[0.28em] text-ink-muted lg:hidden'>
+        <div className='flex items-center gap-4 text-[10px] font-bold tracking-[0.2em] text-ink-muted lg:hidden'>
           <Link href='#tos' className='hover:text-ink'>
             TERMS
           </Link>

@@ -39,10 +39,15 @@ export function Header() {
   return (
     <header className='sticky top-0 z-50 border-b-2 border-black bg-[#e8dfc9]'>
       {/* Mobile header */}
-      <div className='flex items-center justify-between gap-3 px-3 py-3 lg:hidden'>
+      <div className='flex items-center justify-between gap-2 px-2.5 py-2 lg:hidden'>
+        <div aria-hidden className='flex items-center gap-1 pr-1'>
+          <span className='h-2.5 w-2.5 rounded-full border border-line bg-[#b97a56]' />
+          <span className='h-2.5 w-2.5 rounded-full border border-line bg-[#d9a94c]' />
+          <span className='h-2.5 w-2.5 rounded-full border border-line bg-[#4c8b83]' />
+        </div>
         <nav
           aria-label='Primary'
-          className='flex flex-wrap items-center gap-x-4 gap-y-1 text-[10px] font-bold tracking-[0.22em] text-ink'
+          className='flex min-w-0 flex-wrap items-center gap-x-3 gap-y-1 text-[10px] font-bold tracking-[0.18em] text-ink'
         >
           {MOBILE_NAV.map((link) => (
             <Link key={link.href} href={link.href} className='hover:text-navy'>
@@ -51,7 +56,7 @@ export function Header() {
           ))}
         </nav>
 
-        <div className='flex shrink-0 items-center gap-2'>
+        <div className='flex shrink-0 items-center gap-1.5'>
           <button
             type='button'
             className='relative p-1 text-ink'
@@ -64,9 +69,9 @@ export function Header() {
           </button>
           <button
             type='button'
-            className='rounded-full border-2 border-line bg-navy px-3 py-1 text-[9px] font-bold tracking-[0.18em] text-paper'
+            className='rounded-md border border-line bg-paper px-2 py-0.5 text-[11px] font-semibold tracking-[0.04em] text-ink'
           >
-            LOG IN
+            Log In
           </button>
         </div>
       </div>

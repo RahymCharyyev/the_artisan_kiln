@@ -2,13 +2,13 @@ import type { TileId } from "@/data/tiles";
 
 /** Quantities from design_desktop.png */
 export const CART_MOCK_QUANTITIES: Record<
-  "tile1" | "tile3" | "tile7" | "tile8",
+  "tile1" | "tile7" | "tile8" | "tile17",
   number
 > = {
   tile1: 150,
-  tile7: 75,
-  tile3: 200,
-  tile8: 50,
+  tile8: 75,
+  tile17: 200,
+  tile7: 50,
 };
 
 /** Partial 6×6 grid fill from design_desktop.png (left side). */

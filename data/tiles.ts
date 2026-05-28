@@ -7,21 +7,31 @@ function tileId(num: number): TileId {
 }
 
 const FEATURED_NAMES: Partial<Record<number, string>> = {
-  1: "Ocean Wave",
-  3: "Terracotta Dot",
-  7: "Forest Fern",
-  8: "Yellow Star",
+  1: 'Ocean Wave',
+  7: 'Yellow Star',
+  8: 'Forest Fern',
+  17: 'Terracotta Dot',
 };
 
 const FEATURED_PRICES: Partial<Record<number, number>> = {
   1: 28,
-  3: 26,
-  7: 30,
-  8: 29,
+  7: 29,
+  8: 30,
+  17: 26,
+};
+
+const FEATURED_IMAGES: Partial<
+  Record<number, { swatchSrc: string; patternSrc: string }>
+> = {
+  // Dedicated ocean icon + wave pattern for the design row.
+  1: { swatchSrc: '/tiles/ocean_wave.png', patternSrc: '/tiles/11.png' },
+  7: { swatchSrc: '/tiles/7.png', patternSrc: '/tiles/7.png' },
+  8: { swatchSrc: '/tiles/8.png', patternSrc: '/tiles/8.png' },
+  17: { swatchSrc: '/tiles/17.png', patternSrc: '/tiles/17.png' },
 };
 
 function tileName(num: number): string {
-  return FEATURED_NAMES[num] ?? `Collection ${String(num).padStart(2, "0")}`;
+  return FEATURED_NAMES[num] ?? `Collection ${String(num).padStart(2, '0')}`;
 }
 
 function tilePrice(num: number): number {
@@ -39,12 +49,13 @@ export interface TileCatalogEntry {
 export const TILES: Record<TileId, TileCatalogEntry> = TILE_NUMBERS.reduce(
   (acc, num) => {
     const id = tileId(num);
+    const image = FEATURED_IMAGES[num];
     acc[id] = {
       id,
       name: tileName(num),
       unitPriceUSD: tilePrice(num),
-      swatchSrc: `/tiles/${num}.png`,
-      patternSrc: `/tiles/${num}.png`,
+      swatchSrc: image?.swatchSrc ?? `/tiles/${num}.png`,
+      patternSrc: image?.patternSrc ?? `/tiles/${num}.png`,
     };
     return acc;
   },
@@ -57,9 +68,9 @@ export const TILE_IDS = TILE_NUMBERS.map((num) => tileId(num));
 /** Default shopping-cart rows from the design mockup. */
 export const CART_LINE_IDS = [
   tileId(1),
-  tileId(7),
-  tileId(3),
   tileId(8),
+  tileId(17),
+  tileId(7),
 ] as const satisfies readonly TileId[];
 
 export function getTile(tileId: TileId): TileCatalogEntry {
